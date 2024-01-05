@@ -1,20 +1,20 @@
 import Card from "../Card/Card";
 
-function Column({name}) {
+function Column({name , cardList}) {
     return (
         <div className="main__column column">
         <div className="column__title">
           <p>{name}</p>
         </div>
         <div className="cards">
-            <Card name={"Новая карточка"} 
-                theme={"Тема"}
-                date={"10.12.2023"}
-            />
-              <Card name={"Новая карточка2"} 
-                theme={"Тема2"}
-                date={"10.12.2023"}
-            />
+            {cardList.map((card) => (
+              <Card name={card.title} 
+              theme={card.theme}
+              date={card.date}
+              key={card.id}
+               />
+            ))}
+      
         </div>
       </div>
     )

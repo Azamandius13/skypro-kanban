@@ -1,4 +1,10 @@
+import { useState } from "react";
+
 function Header() {
+  const [isOpened , setIsOpened ] = useState(false);
+    function togglePopup() {
+      setIsOpened((isOpened) => !isOpened);
+    } 
     return (
         <header className="header">
         <div className="container">
@@ -17,12 +23,13 @@ function Header() {
               <button className="header__btn-main-new _hover01" id="btnMainNew">
                 <a href="#popNewCard">Создать новую задачу</a>
               </button>
-              <a href="#user-set-target" className="header__user _hover02">
+              <a href="#" onclickclassName="header__user _hover02" onClick={togglePopup}>
                 Ivan Ivanov
               </a>
-              <div
+              {isOpened &&      
+               <div
                 className="header__pop-user-set pop-user-set"
-                id="user-set-target"
+                id="#"
               >
                 {/* <a href="">x</a> */}
                 <p className="pop-user-set__name">Ivan Ivanov</p>
@@ -34,7 +41,9 @@ function Header() {
                 <button type="button" className="_hover03">
                   <a href="#popExit">Выйти</a>
                 </button>
-              </div>
+              </div> 
+              }
+        
             </nav>
           </div>
         </div>

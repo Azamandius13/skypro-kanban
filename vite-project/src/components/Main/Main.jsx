@@ -1,4 +1,14 @@
 import Column from "../Column/Column";
+import { cardList } from "../../data";
+
+export const statuslist = [
+  "Без статуса",
+  "Нужно сделать",
+  "В работе",
+  "Тестирование",
+  "Готово",
+];
+
 
 function Main(){
     return (
@@ -6,11 +16,15 @@ function Main(){
         <div className="container">
           <div className="main__block">
             <div className="main__content">
-              <Column name={"Без Статуса"}/>
-              <Column name={"Нужно сделать"}/>
-              <Column name={"В работе"}/>
-              <Column name={"Тестирование"}/>
-              <Column name={"Готово"}/>
+              {statuslist.map((item) => (
+                <Column 
+                key={item}
+                name={item}
+                cardList={cardList.filter((card) => card.status === status)}
+                />
+
+              ))}
+              
             </div>
           </div>
         </div>
