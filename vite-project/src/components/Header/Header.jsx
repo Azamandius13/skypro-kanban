@@ -42,6 +42,7 @@ function Header({ addCard }) {
           <HeaderNav>
             <ButtonHeader onClick={addCard}>Создать новую задачу</ButtonHeader>
             <HeaderUser onClick={togglePopUp}>Ivan Ivanov</HeaderUser>
+            {isOpenedPopUpExit && (<PopExit />)}
             {isOpened && (
               <HeaderPopUserSet>
                 <PopUserSetName>Ivan Ivanov</PopUserSetName>
@@ -53,13 +54,13 @@ function Header({ addCard }) {
                 <ExitButtonHeader onClick={togglePopUpExit}>
                   Выйти
                 </ExitButtonHeader>
-                {isOpenedPopUpExit && (<PopExit/>)}
               </HeaderPopUserSet>
             )}
           </HeaderNav>
         </HeaderBlock>
       </Container>
     </HeaderM>
+    
   );
 }
 
