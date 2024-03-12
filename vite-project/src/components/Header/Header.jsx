@@ -1,60 +1,64 @@
 import { useState } from "react";
+import { Container } from "../Common/Common.styled";
+import {
+  ExitButtonHeader,
+  ExitButtonHeaderA,
+  HeaderM,
+  PopUserSetTheme,
+} from "./Header.styled";
+import { HeaderBlock } from "./Header.styled";
+import { HeaderLogo } from "./Header.styled";
+import { HeaderNav } from "./Header.styled";
+import { ButtonHeader } from "./Header.styled";
+import { HeaderUser } from "./Header.styled";
+import { HeaderPopUserSet } from "./Header.styled";
+import { PopUserSetName } from "./Header.styled";
+import { HeaderLogoImg } from "./Header.styled";
+import { PopUserSetMail } from "./Header.styled";
+import { PopUserSetThemeInput } from "./Header.styled";
 
-function Header({addCard}){
-    const [isOpened , setIsOpened ] = useState(false);
+function Header({ addCard }) {
+  const [isOpened, setIsOpened] = useState(false);
 
-    function togglePopUp() {
-      setIsOpened((isOpened)=>!isOpened);
-    }
+  function togglePopUp() {
+    setIsOpened((isOpened) => !isOpened);
+  }
 
-    return (
-        <header className="header">
-        <div className="container">
-          <div className="header__block">
-            <div className="header__logo _show _light">
-              <a href="" target="_self">
-                <img src="images/logo.png" alt="logo" />
-              </a>
-            </div>
-            <div className="header__logo _dark">
-              <a href="" target="_self">
-                <img src="images/logo_dark.png" alt="logo" />
-              </a>
-            </div>
-            <nav className="header__nav">
-              <button onClick={addCard}
-                className="header__btn-main-new _hover01"
-                id="btnMainNew"
-              >
-                Создать новую задачу
-              </button>
-              <a href="#user-set-target" className="header__user _hover02" onClick={togglePopUp}>
-                Ivan Ivanov
-              </a>
-              {isOpened && <div
-                className="header__pop-user-set pop-user-set"
-                id="user-set-target"
-              >
-                {/* <a href="">x</a> */}
-                <p className="pop-user-set__name">Ivan Ivanov</p>
-                <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-                <div className="pop-user-set__theme">
+  return (
+    <HeaderM>
+      <Container>
+        <HeaderBlock>
+          <HeaderLogo>
+            <a href="" target="_self">
+              <HeaderLogoImg src="images/logo.png" alt="logo" />
+            </a>
+          </HeaderLogo>
+          <HeaderLogo>
+            <a href="" target="_self">
+              <HeaderLogoImg src="images/logo_dark.png" alt="logo" />
+            </a>
+          </HeaderLogo>
+          <HeaderNav>
+            <ButtonHeader onClick={addCard}>Создать новую задачу</ButtonHeader>
+            <HeaderUser onClick={togglePopUp}>Ivan Ivanov</HeaderUser>
+            {isOpened && (
+              <HeaderPopUserSet>
+                <PopUserSetName>Ivan Ivanov</PopUserSetName>
+                <PopUserSetMail>ivan.ivanov@gmail.com</PopUserSetMail>
+                <PopUserSetTheme>
                   <p>Темная тема</p>
-                  <input
-                    type="checkbox"
-                    className="checkbox"
-                    name="checkbox"
-                  />
-                </div>
-                <button type="button" className="_hover03">
-                  <a href="#popExit">Выйти</a>
-                </button>
-              </div>}
-            </nav>
-          </div>
-        </div>
-      </header>
-    )
+                  <PopUserSetThemeInput type="checkbox" name="checkbox" />
+                </PopUserSetTheme>
+                <ExitButtonHeader>
+                  <ExitButtonHeaderA href="#popExit">Выйти</ExitButtonHeaderA>
+                </ExitButtonHeader>
+              </HeaderPopUserSet>
+            )}
+          </HeaderNav>
+        </HeaderBlock>
+      </Container>
+    </HeaderM>
+  );
 }
 
 export default Header;

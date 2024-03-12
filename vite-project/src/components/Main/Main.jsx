@@ -1,12 +1,16 @@
 import Column from "../Column/Column";
 import { statusList } from "../../data";
+import { Container } from "../Common/Common.styled";
+import { MainContainer } from "./Main.styled";
+import { MainBlock } from "./Main.styled";
+import { MainContent } from "./Main.styled";
 
 function Main({cardList , isLoaded}) {
   return (
-    <main className="main">
-      <div className="container">
-        <div className="main__block">
-          <div className="main__content">
+    <MainContainer>
+      <Container>
+        <MainBlock>
+          <MainContent>
               { isLoaded? "Данные загружаются" : statusList.map((status)=> 
                  <Column 
                  key={status}
@@ -14,13 +18,12 @@ function Main({cardList , isLoaded}) {
                  cardList={cardList.filter((card) => card.status === status)}
                  />
               )
-
               }
             
-          </div>
-        </div>
-      </div>
-    </main>
+          </MainContent>
+        </MainBlock>
+      </Container>
+    </MainContainer>
   );
 }
 
