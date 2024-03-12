@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { Container } from "../Common/Common.styled";
-import {
-  ExitButtonHeader,
-  ExitButtonHeaderA,
-  HeaderM,
-  PopUserSetTheme,
-} from "./Header.styled";
+import { ExitButtonHeader, HeaderM, PopUserSetTheme } from "./Header.styled";
 import { HeaderBlock } from "./Header.styled";
 import { HeaderLogo } from "./Header.styled";
 import { HeaderNav } from "./Header.styled";
@@ -16,9 +11,15 @@ import { PopUserSetName } from "./Header.styled";
 import { HeaderLogoImg } from "./Header.styled";
 import { PopUserSetMail } from "./Header.styled";
 import { PopUserSetThemeInput } from "./Header.styled";
+import PopExit from "../PopExit/PopExit";
 
 function Header({ addCard }) {
   const [isOpened, setIsOpened] = useState(false);
+  const [isOpenedPopUpExit, setIsOpenedPopUpExit] = useState(false);
+
+  function togglePopUpExit() {
+    setIsOpenedPopUpExit((isOpenedPopUpExit) => !isOpenedPopUpExit);
+  }
 
   function togglePopUp() {
     setIsOpened((isOpened) => !isOpened);
@@ -49,9 +50,10 @@ function Header({ addCard }) {
                   <p>Темная тема</p>
                   <PopUserSetThemeInput type="checkbox" name="checkbox" />
                 </PopUserSetTheme>
-                <ExitButtonHeader>
-                  <ExitButtonHeaderA href="#popExit">Выйти</ExitButtonHeaderA>
+                <ExitButtonHeader onClick={togglePopUpExit}>
+                  Выйти
                 </ExitButtonHeader>
+                {isOpenedPopUpExit && (<PopExit/>)}
               </HeaderPopUserSet>
             )}
           </HeaderNav>
