@@ -6,7 +6,7 @@ export const PopExitContainerMain = styled.div`
   height: 100%;
   min-width: 320px;
   min-height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 5;
@@ -74,6 +74,7 @@ export const PopExitExitYes = styled.button`
   &:hover {
     background-color: #33399b;
   }
+
 `;
 
 export const PopExitExitNo = styled.button`
