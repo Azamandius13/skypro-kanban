@@ -30,8 +30,6 @@ export const HeaderNav = styled.nav`
 `;
 
 export const ButtonHeader = styled.button`
-  width: 178px;
-  height: 30px;
   border-radius: 4px;
   background-color: #565eef;
   color: #ffffff;

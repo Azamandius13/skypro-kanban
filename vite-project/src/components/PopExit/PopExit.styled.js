@@ -77,7 +77,7 @@ export const PopExitExitYes = styled.button`
 `;
 
 export const PopExitExitNo = styled.button`
-  width: 153px;
+  width: 203px;
   height: 30px;
   background-color: transparent;
   border-radius: 4px;
