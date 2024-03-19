@@ -1,4 +1,6 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { appRoutes } from "../../lib/approutes";
+import { PopBrowseButtonExit } from "./PopBrowse.styled";
 
 function PopBrowse() {
   let { cardId } = useParams();
@@ -193,9 +195,11 @@ function PopBrowse() {
                   <a href="#">Удалить задачу</a>
                 </button>
               </div>
-              <button className="btn-edit__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
-              </button>
+              <Link to={appRoutes.MAIN}>
+                <PopBrowseButtonExit>
+                  Закрыть
+                </PopBrowseButtonExit>
+              </Link>
             </div>
           </div>
         </div>

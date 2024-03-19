@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import { appRoutes } from "./lib/approutes";
 import CardPage from "./Pages/CardPage";
 import MainPage from "./Pages/MainPage";
-import ExitPage from "./Pages/ExitPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import RegisterPage from "./Pages/RegisterPage/RegisterPage";
 import NotFoundPage from "./Pages/NotFoundPage";
@@ -22,11 +21,9 @@ function App() {
               <Route path={`${appRoutes.CARD}/:cardId`} element={<CardPage/>}/>
           </Route>
         </Route>
-        <Route path={appRoutes.CARD} element={<CardPage />}></Route>
-        <Route path={appRoutes.EXIT} element={<ExitPage />}></Route>
-        <Route path={appRoutes.LOGIN} element={<LoginPage />}></Route>
-        <Route path={appRoutes.REGISTER} element={<RegisterPage />}></Route>
-        <Route path={appRoutes.NOT_FOUND} element={<NotFoundPage />}></Route>
+        <Route path={appRoutes.LOGIN} element={<LoginPage />}/>
+        <Route path={appRoutes.REGISTER} element={<RegisterPage />}/>
+        <Route path={appRoutes.NOT_FOUND} element={<NotFoundPage />}/>
       </Routes>
     </>
   );
