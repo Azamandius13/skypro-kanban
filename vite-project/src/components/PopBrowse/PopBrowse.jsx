@@ -167,7 +167,7 @@ function PopBrowse() {
                 <p className="_orange">Web Design</p>
               </div>
             </div>
-            <div className="pop-browse__btn-browse ">
+            <div className="pop-browse__btn-browse 1231231">
               <div className="btn-group">
                 <button className="btn-browse__edit _btn-bor _hover03">
                   <a href="#">Редактировать задачу</a>
@@ -176,9 +176,11 @@ function PopBrowse() {
                   <a href="#">Удалить задачу</a>
                 </button>
               </div>
-              <button className="btn-browse__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
-              </button>
+              <Link to={appRoutes.MAIN}>
+                <button className="btn-browse__close _btn-bg _hover01">
+                  Закрыть
+                </button>
+              </Link>
             </div>
             <div className="pop-browse__btn-edit _hide">
               <div className="btn-group">
@@ -196,9 +198,7 @@ function PopBrowse() {
                 </button>
               </div>
               <Link to={appRoutes.MAIN}>
-                <PopBrowseButtonExit>
-                  Закрыть
-                </PopBrowseButtonExit>
+                <PopBrowseButtonExit>Закрыть</PopBrowseButtonExit>
               </Link>
             </div>
           </div>
