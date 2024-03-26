@@ -28,7 +28,7 @@ export default function RegisterPage() {
 
   const [registerData, setRegisterData] = useState(registerForm);
 
-  const handleRegister = (e) => {
+  const handleRegister = async(e) => {
     e.preventDefault();
     try {
       await Registration(registerData)
@@ -43,14 +43,7 @@ export default function RegisterPage() {
     }
   };
 
-  switch () {
-    case value:
-      
-      break;
-  
-    default:
-      break;
-  }
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
