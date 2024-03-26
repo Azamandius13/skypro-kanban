@@ -31,7 +31,7 @@ export default function RegisterPage() {
   const handleRegister = (e) => {
     e.preventDefault();
     try {
-      Registration(registerData)
+      await Registration(registerData)
         .then((data) => {
           console.log(data);
         })
@@ -42,6 +42,15 @@ export default function RegisterPage() {
       alert(error.message);
     }
   };
+
+  switch () {
+    case value:
+      
+      break;
+  
+    default:
+      break;
+  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
