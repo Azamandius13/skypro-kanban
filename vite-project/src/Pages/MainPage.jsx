@@ -7,17 +7,21 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { cardList } from "../data";
 import { Outlet } from "react-router-dom";
+import { getTasks } from "../api";
 
-export default function MainPage() {
+export default function MainPage({ userData  }) {
   const [cards, setCards] = useState(cardList);
   const [isLoaded, setIsLoaded] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoaded((isLoaded) => {
-        !isLoaded;
+    getTasks({ token: userData.token })
+      .then((data) => {
+        console.log(data.tasks);
+        setCards(data.tasks);
+      })
+      .then(() => {
+        setIsLoaded(false);
       });
-    }, 2000);
   }, []);
 
   function addCard() {
@@ -36,7 +40,7 @@ export default function MainPage() {
     <>
       <Wrapper>
         {/* <PopNewCard /> */}
-        <Outlet/>
+        <Outlet />
         <Header addCard={addCard} />
         <Main cardList={cards} isLoaded={isLoaded} />
       </Wrapper>

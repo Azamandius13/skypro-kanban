@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ContainerSignin,
   ContainerSigninModal,
@@ -14,8 +14,43 @@ import {
   SignIninput,
 } from "./LoginPage.styled";
 import { appRoutes } from "../../lib/approutes";
+import { login } from "../../api";
+import { useState } from "react";
 
-export default function LoginPage() {
+export default function LoginPage({ setUserData }) {
+  let navigate = useNavigate();
+
+  const loginForm = {
+    login: "",
+    password: "",
+  };
+
+  const [loginData, setLoginData] = useState(loginForm);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await login(loginData)
+        .then((data) => {
+          setUserData(data.user);
+        })
+        .then(() => {
+          navigate(appRoutes.MAIN);
+        });
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setLoginData({
+      ...loginData,
+      [name]: value,
+    });
+  };
+
   return (
     <>
       <LoginPageWrapper>
@@ -27,18 +62,22 @@ export default function LoginPage() {
               </ContainerSigninModalTtl>
               <ModalFormLogin>
                 <SignIninput
+                  value={loginData.login}
+                  onChange={handleInputChange}
                   type="text"
                   name="login"
                   id="formlogin"
                   placeholder="Эл. почта"
                 />
                 <SignIninput
+                  value={loginData.password}
+                  onChange={handleInputChange}
                   type="password"
                   name="password"
                   id="formpassword"
                   placeholder="Пароль"
                 />
-                <ModalBtnEnter>Войти</ModalBtnEnter>
+                <ModalBtnEnter onClick={handleLogin}>Войти</ModalBtnEnter>
                 <SignInModalFormGroup>
                   <SignInModalFormGroupP>
                     Нужно зарегистрироваться?
