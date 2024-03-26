@@ -41,7 +41,7 @@ export default function MainPage({ userData  }) {
       <Wrapper>
         {/* <PopNewCard /> */}
         <Outlet />
-        <Header addCard={addCard} />
+        <Header addCard={addCard} userData = {userData} />
         <Main cardList={cards} isLoaded={isLoaded} />
       </Wrapper>
     </>
