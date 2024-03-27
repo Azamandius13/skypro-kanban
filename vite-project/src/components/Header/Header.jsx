@@ -13,9 +13,11 @@ import { PopUserSetMail } from "./Header.styled";
 import { PopUserSetThemeInput } from "./Header.styled";
 import PopExit from "../PopExit/PopExit";
 
-function Header({ addCard }) {
+function Header({ addCard , userData}) {
   const [isOpened, setIsOpened] = useState(false);
   const [isOpenedPopUpExit, setIsOpenedPopUpExit] = useState(false);
+  
+  console.log(userData)
 
   function togglePopUpExit() {
     setIsOpenedPopUpExit((isOpenedPopUpExit) => !isOpenedPopUpExit);
@@ -41,12 +43,12 @@ function Header({ addCard }) {
           </HeaderLogo>
           <HeaderNav>
             <ButtonHeader onClick={addCard}>Создать новую задачу</ButtonHeader>
-            <HeaderUser onClick={togglePopUp}>Ivan Ivanov</HeaderUser>
+            <HeaderUser onClick={togglePopUp}>{userData.name}</HeaderUser>
             {isOpenedPopUpExit && (<PopExit />)}
             {isOpened && (
               <HeaderPopUserSet>
-                <PopUserSetName>Ivan Ivanov</PopUserSetName>
-                <PopUserSetMail>ivan.ivanov@gmail.com</PopUserSetMail>
+                <PopUserSetName>{userData.name}</PopUserSetName>
+                <PopUserSetMail>{userData.login}</PopUserSetMail>
                 <PopUserSetTheme>
                   <p>Темная тема</p>
                   <PopUserSetThemeInput type="checkbox" name="checkbox" />
