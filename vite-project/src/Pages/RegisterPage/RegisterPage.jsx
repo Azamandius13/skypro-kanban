@@ -94,9 +94,7 @@ export default function RegisterPage() {
                 <SignUpModalFormGroup>
                   <SignUpModalFormGroupP>
                     Уже есть аккаунт?{" "}
-                    <SignUpModalFormGroupA>
                       <Link to={appRoutes.LOGIN}>Войдите здесь</Link>
-                    </SignUpModalFormGroupA>
                   </SignUpModalFormGroupP>
                 </SignUpModalFormGroup>
               </SignUpModalFormLogin>
