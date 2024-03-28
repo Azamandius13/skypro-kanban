@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { breakpoints } from "../../lib/breakpoints";
+import { Link } from "react-router-dom";
 
 export const LoginPageWrapper = styled.div`
   width: 100%;
@@ -133,7 +134,7 @@ export const SignInModalFormGroupP = styled.p`
   letter-spacing: -0.14px;
 `;
 
-export const SignInModalFormGroupA = styled.a`
+export const SignInModalFormGroupA = styled(Link)`
   color: rgba(148, 166, 190, 0.4);
   font-size: 14px;
   font-weight: 400;
@@ -141,3 +142,4 @@ export const SignInModalFormGroupA = styled.a`
   letter-spacing: -0.14px;
   text-decoration: underline;
 `;
+
