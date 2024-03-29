@@ -83,8 +83,8 @@ export default function LoginPage({ setUserData }) {
                   <SignInModalFormGroupP>
                     Нужно зарегистрироваться?
                   </SignInModalFormGroupP>
-                  <SignInModalFormGroupA>
-                    <Link to={appRoutes.REGISTER}>Регистрируйтесь здесь</Link>
+                  <SignInModalFormGroupA to={appRoutes.REGISTER}>
+                    Регистрируйтесь здесь
                   </SignInModalFormGroupA>
                 </SignInModalFormGroup>
               </ModalFormLogin>
