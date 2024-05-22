@@ -1,4 +1,3 @@
-import {  useNavigate } from "react-router-dom";
 import {
   ContainerSignin,
   ContainerSigninModal,
@@ -16,28 +15,25 @@ import {
 import { appRoutes } from "../../lib/approutes";
 import { login } from "../../api";
 import { useState } from "react";
+import { useUser } from "../../hooks/useUser";
 
-export default function LoginPage({ setUserData }) {
-  let navigate = useNavigate();
+export default function LoginPage() {
+  const { loginUser } = useUser();
 
   const loginForm = {
     login: "",
     password: "",
   };
 
-
   const [loginData, setLoginData] = useState(loginForm);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await login(loginData)
-        .then((data) => {
-          setUserData(data.user);
-        })
-        .then(() => {
-          navigate(appRoutes.MAIN);
-        });
+      await login(loginData).then((data) => {
+        console.log(data)
+        loginUser(data.user);
+      });
     } catch (error) {
       alert(error.message);
     }

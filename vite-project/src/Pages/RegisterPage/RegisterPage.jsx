@@ -17,7 +17,9 @@ import { appRoutes } from "../../lib/approutes";
 import { useState } from "react";
 import { Registration } from "../../api";
 
-export default function RegisterPage() {
+
+export default function RegisterPage(){
+
   let navigate = useNavigate();
 
   const registerForm = {
@@ -28,7 +30,7 @@ export default function RegisterPage() {
 
   const [registerData, setRegisterData] = useState(registerForm);
 
-  const handleRegister = async(e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     try {
       await Registration(registerData)
@@ -42,8 +44,6 @@ export default function RegisterPage() {
       alert(error.message);
     }
   };
-
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

@@ -8,8 +8,12 @@ import { useEffect } from "react";
 import { cardList } from "../data";
 import { Outlet } from "react-router-dom";
 import { getTasks } from "../api";
+import { useUser } from "../hooks/useUser";
 
-export default function MainPage({ userData  }) {
+export default function MainPage() {
+
+  const {userData} = useUser();
+
   const [cards, setCards] = useState(cardList);
   const [isLoaded, setIsLoaded] = useState(true);
 

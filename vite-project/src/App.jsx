@@ -11,22 +11,23 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { useState } from "react";
 
 function App() {
-
-  const [userData , setUserData ] = useState(null);
-
+  const [userData, setUserData] = useState(null);
 
   return (
     <>
       <GlobalStyle />
       <Routes>
-        <Route element={<PrivateRoute user={userData} />}>
-          <Route path={appRoutes.MAIN} element={<MainPage userData={userData} setUserData = { setUserData} />}>
-              <Route path={`${appRoutes.CARD}/:cardId`} element={<CardPage/>}/>
+        <Route element={<PrivateRoute />}>
+          <Route
+            path={appRoutes.MAIN}
+            element={<MainPage userData={userData} setUserData={setUserData} />}
+          >
+            <Route path={`${appRoutes.CARD}/:cardId`} element={<CardPage />} />
           </Route>
         </Route>
-        <Route path={appRoutes.LOGIN} element={<LoginPage setUserData = {setUserData} />}/>
-        <Route path={appRoutes.REGISTER} element={<RegisterPage />}/>
-        <Route path={appRoutes.NOT_FOUND} element={<NotFoundPage />}/>
+        <Route path={appRoutes.LOGIN} element={<LoginPage />} />
+        <Route path={appRoutes.REGISTER} element={<RegisterPage />} />
+        <Route path={appRoutes.NOT_FOUND} element={<NotFoundPage />} />
       </Routes>
     </>
   );
