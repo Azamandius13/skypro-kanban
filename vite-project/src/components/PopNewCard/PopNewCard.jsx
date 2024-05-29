@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Calendar } from "../Calendar/Calendar";
 import { addNewTaskApi } from "../../api";
 import { useUser } from "../../hooks/useUser";
-import { Navigate } from "react-router-dom";
 import { appRoutes } from "../../lib/approutes";
+import { Link } from "react-router-dom";
 
 function PopNewCard() {
   const {userData} = useUser();
@@ -51,9 +51,11 @@ function PopNewCard() {
         <div className="pop-new-card__block">
           <div className="pop-new-card__content">
             <h3 className="pop-new-card__ttl">Создание задачи</h3>
+            <Link to = {appRoutes.MAIN}>
             <a href="#" className="pop-new-card__close">
               ✖
             </a>
+            </Link>
             <div className="pop-new-card__wrap">
               <form
                 className="pop-new-card__form form-new"
@@ -145,10 +147,11 @@ function PopNewCard() {
                 </label>
               </div>
             </div>
-                  
+            <Link  to = {appRoutes.MAIN}>
             <button onClick = {handleFormSubmit} className="form-new__create _hover01" id="btnCreate">
               Создать задачу
             </button>
+            </Link>
           </div>
         </div>
       </div>
