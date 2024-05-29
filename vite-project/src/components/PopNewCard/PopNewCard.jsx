@@ -68,10 +68,9 @@ function PopNewCard() {
                   id="radio1"
                   name="radios"
                   value="Стандатный"
-                  className="radio12"
                   checked
                 />
-                <label for="radio1">Web Design</label>
+                <label className="radio1" for="radio1">Web Design</label>
 
                 <input
                   type="radio"
@@ -79,7 +78,7 @@ function PopNewCard() {
                   name="radios"
                   value="Морозостойкий"
                 />
-                <label for="radio2">Research</label>
+                <label className="radio2" for="radio2">Research</label>
 
                 <input
                   type="radio"
@@ -87,7 +86,7 @@ function PopNewCard() {
                   name="radios"
                   value="Паростойкий"
                 />
-                <label for="radio3">Copywriting</label>
+                <label className="radio3" for="radio3">Copywriting</label>
               </div>
             </div>
 

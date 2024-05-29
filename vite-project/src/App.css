@@ -1117,20 +1117,42 @@ body {
   display: inline-block;
   padding: 2px 9px;
   cursor: pointer;
-  border: 1px solid #dad0ff;
+  border: 1px solid;
 }
 
 .radio-toolbar input[type="radio"]:checked + label {
-  border: 4px solid #ee4949;
+  border: 3px solid #565eef;
+  background-color: #565eef;
+  color:#fff;
 }
 
-.radio12 {
-  color: #ff6d00;
+.radio1 {
+  margin-right: 5px;
+  color: #df8210;
   border-radius: 20px;
-  background-color: #b59cbd;
+  background-color: #FFE4C2;
+  font-weight: 1000px;
 }
+
+.radio2 {
+  margin-right: 5px;
+  margin-left: 5px;
+  color: #06B16E;
+  border-radius: 20px;
+  background-color: #B4FDD1;
+}
+
+.radio3 {
+  margin-right: 5px;
+  margin-left: 5px;
+  color: #9A48F1;
+  border-radius: 20px;
+  background-color: #E9D4FF;
+}
+
 
 .radio-toolbar label:hover {
-  background-color: #d0ffb7;
-  border: 1px solid #1ca92e;
+  background-color: #757ae9;
+  color:#fff;
+  border: 1px solid #757ae9;
 }
