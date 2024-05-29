@@ -12,8 +12,9 @@ import { HeaderLogoImg } from "./Header.styled";
 import { PopUserSetMail } from "./Header.styled";
 import { PopUserSetThemeInput } from "./Header.styled";
 import PopExit from "../PopExit/PopExit";
+import { appRoutes } from "../../lib/approutes";
 
-function Header({ addCard , userData}) {
+function Header({userData}) {
   const [isOpened, setIsOpened] = useState(false);
   const [isOpenedPopUpExit, setIsOpenedPopUpExit] = useState(false);
   
@@ -44,7 +45,7 @@ function Header({ addCard , userData}) {
             </a>
           </HeaderLogo>
           <HeaderNav>
-            <ButtonHeader onClick={addCard}>Создать новую задачу</ButtonHeader>
+            <ButtonHeader to={appRoutes.NEWCARD}>Создать новую задачу</ButtonHeader>
             <HeaderUser onClick={togglePopUp}>{userData.name}</HeaderUser>
             {isOpenedPopUpExit && (<PopExit />)}
             {isOpened && (

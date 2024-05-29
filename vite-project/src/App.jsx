@@ -9,6 +9,7 @@ import RegisterPage from "./Pages/RegisterPage/RegisterPage";
 import NotFoundPage from "./Pages/NotFoundPage";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { useState } from "react";
+import AddTaskPage from "./Pages/AddTaskPage/AddTaskPage";
 
 function App() {
   const [userData, setUserData] = useState(null);
@@ -23,6 +24,7 @@ function App() {
             element={<MainPage userData={userData} setUserData={setUserData} />}
           >
             <Route path={`${appRoutes.CARD}/:cardId`} element={<CardPage />} />
+            <Route path={appRoutes.NEWCARD} element={<AddTaskPage />} />
           </Route>
         </Route>
         <Route path={appRoutes.LOGIN} element={<LoginPage />} />

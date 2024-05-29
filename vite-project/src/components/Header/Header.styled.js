@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { breakpoints } from "../../lib/breakpoints";
+import { Link } from "react-router-dom";
 
 export const HeaderM = styled.header`
   width: 100%;
@@ -29,7 +30,7 @@ export const HeaderNav = styled.nav`
   justify-content: center;
 `;
 
-export const ButtonHeader = styled.button`
+export const ButtonHeader = styled(Link)`
   border-radius: 4px;
   background-color: #565eef;
   color: #ffffff;
