@@ -3,10 +3,11 @@ import { Calendar } from "../Calendar/Calendar";
 import { addNewTaskApi } from "../../api";
 import { useUser } from "../../hooks/useUser";
 import { appRoutes } from "../../lib/approutes";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function PopNewCard() {
   const {userData} = useUser();
+  let navigate = useNavigate();
 
   const [selected, setSelected] = useState();
 
@@ -18,6 +19,7 @@ function PopNewCard() {
 
   const handleFormSubmit =async (e) => {
       e.preventDefault()
+
       const taskData = {
         ...newtask,
         date : selected,
@@ -27,8 +29,9 @@ function PopNewCard() {
 
       try {
         await addNewTaskApi( userData.token, {taskData}).then(() => {
-          console.log(userData.token)
-          alert("Добавляю задачу")
+          console.log(userData.token);
+          console.log("Добавляю задачу");
+          navigate(appRoutes.MAIN);
         })
       } catch (error) {
         alert(error.message);
