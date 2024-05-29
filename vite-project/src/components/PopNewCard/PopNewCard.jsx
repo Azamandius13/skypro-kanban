@@ -26,7 +26,8 @@ function PopNewCard() {
       console.log(taskData)
 
       try {
-        await addNewTaskApi(userData.token , {taskData}).then(() => {
+        await addNewTaskApi( userData.token, {taskData}).then(() => {
+          console.log(userData.token)
           alert("Добавляю задачу")
         })
       } catch (error) {

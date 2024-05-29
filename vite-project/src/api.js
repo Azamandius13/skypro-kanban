@@ -48,9 +48,12 @@ export async function Registration({ login, name, password }) {
   return data;
 }
 
-export async function addNewTaskApi(token , {title , topic, status , description , date}) {
+export async function addNewTaskApi(
+  token,
+  { title, topic, status, description, date }
+) {
   const response = await fetch(API_URL, {
-    headers : {
+    headers: {
       Authorization: `Bearer ${token}`,
     },
     method: "POST",
@@ -59,7 +62,7 @@ export async function addNewTaskApi(token , {title , topic, status , description
       topic,
       status,
       description,
-      date
+      date,
     }),
   });
   if (!response.ok) {
