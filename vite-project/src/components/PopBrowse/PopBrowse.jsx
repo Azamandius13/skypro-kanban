@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { appRoutes } from "../../lib/approutes";
 import { PopBrowseButtonExit } from "./PopBrowse.styled";
+import { Calendar } from "../Calendar/Calendar";
 
 function PopBrowse() {
   let { cardId } = useParams();
@@ -55,7 +56,7 @@ function PopBrowse() {
                   />
                 </div>
               </form>
-              <div className="pop-new-card__calendar calendar">
+              {/* <div className="pop-new-card__calendar calendar">
                 <p className="calendar__ttl subttl">Даты</p>
                 <div className="calendar__block">
                   <div className="calendar__nav">
@@ -159,7 +160,8 @@ function PopBrowse() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
+              <Calendar/>
             </div>
             <div className="theme-down__categories theme-down">
               <p className="categories__p subttl">Категория</p>

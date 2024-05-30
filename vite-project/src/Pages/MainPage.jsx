@@ -40,6 +40,7 @@ export default function MainPage() {
       },
     ]);
   }
+  
   return (
     <>
       <Wrapper>

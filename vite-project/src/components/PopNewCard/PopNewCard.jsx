@@ -28,7 +28,7 @@ function PopNewCard() {
       console.log(taskData)
 
       try {
-        await addNewTaskApi( userData.token, {taskData}).then(() => {
+        await addNewTaskApi( userData.token, taskData ).then(() => {
           console.log(userData.token);
           console.log("Добавляю задачу");
           navigate(appRoutes.MAIN);
