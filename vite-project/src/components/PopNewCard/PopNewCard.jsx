@@ -1,44 +1,29 @@
 import { useState } from "react";
 import { Calendar } from "../Calendar/Calendar";
-import { addNewTaskApi } from "../../api";
-import { useUser } from "../../hooks/useUser";
 import { appRoutes } from "../../lib/approutes";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function PopNewCard() {
-  const {userData} = useUser();
-  let navigate = useNavigate();
-
+function PopNewCard({onCreate}) {
   const [selected, setSelected] = useState();
-
-  const [ newtask, setNewTask] = useState({
+  const [newtask, setNewTask] = useState({
     title: "",
-    topic : "",
-    description : "",
+    topic: "",
+    description: "",
   });
 
-  const handleFormSubmit =async (e) => {
-      e.preventDefault()
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
 
-      const taskData = {
-        ...newtask,
-        date : selected,
-      };
+    const taskData = {
+      ...newtask,
+      date: selected,
+    };
 
-      console.log(taskData)
+    console.log(taskData);
+    onCreate(taskData);
 
-      try {
-        await addNewTaskApi( userData.token, taskData ).then(() => {
-          console.log(userData.token);
-          console.log("Добавляю задачу");
-          navigate(appRoutes.MAIN);
-        })
-      } catch (error) {
-        alert(error.message);
-      }
-  }
+  };
 
-  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewTask({
@@ -47,18 +32,16 @@ function PopNewCard() {
     });
   };
 
-
-
   return (
     <div className="pop-new-card" id="popNewCard">
       <div className="pop-new-card__container">
         <div className="pop-new-card__block">
           <div className="pop-new-card__content">
             <h3 className="pop-new-card__ttl">Создание задачи</h3>
-            <Link to = {appRoutes.MAIN}>
-            <a href="#" className="pop-new-card__close">
-              ✖
-            </a>
+            <Link to={appRoutes.MAIN}>
+              <a href="#" className="pop-new-card__close">
+                ✖
+              </a>
             </Link>
             <div className="pop-new-card__wrap">
               <form
@@ -97,7 +80,7 @@ function PopNewCard() {
               </form>
               <div className="pop-new-card__calendar calendar">
                 <p className="calendar__ttl subttl">Даты</p>
-                <Calendar selected = {selected} setSelected = {setSelected} />
+                <Calendar selected={selected} setSelected={setSelected} />
               </div>
             </div>
             {/* <div className="pop-new-card__categories categories">
@@ -120,7 +103,7 @@ function PopNewCard() {
                 <input
                   type="radio"
                   id="radio1"
-                  name="topic"  
+                  name="topic"
                   value="Web Design"
                   onChange={handleInputChange}
                 />
@@ -151,10 +134,14 @@ function PopNewCard() {
                 </label>
               </div>
             </div>
-            <Link  to = {appRoutes.MAIN}>
-            <button onClick = {handleFormSubmit} className="form-new__create _hover01" id="btnCreate">
-              Создать задачу
-            </button>
+            <Link to={appRoutes.MAIN}>
+              <button
+                onClick={handleFormSubmit}
+                className="form-new__create _hover01"
+                id="btnCreate"
+              >
+                Создать задачу
+              </button>
             </Link>
           </div>
         </div>

@@ -39,9 +39,11 @@ export const ButtonHeader = styled(Link)`
   line-height: 1;
   font-weight: 500;
   margin-right: 20px;
+  padding : 8px 12px 8px 12px;
 
   &:hover {
     background-color: #33399b;
+    color: #ffffff;
   }
 
   @media (max-width: ${breakpoints.md}px) {
