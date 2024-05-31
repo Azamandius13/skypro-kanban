@@ -14,8 +14,7 @@ import { PopUserSetThemeInput } from "./Header.styled";
 import PopExit from "../PopExit/PopExit";
 import { appRoutes } from "../../lib/approutes";
 
-function 
-Header({userData}) {
+function Header({userData}) {
   const [isOpened, setIsOpened] = useState(false);
   const [isOpenedPopUpExit, setIsOpenedPopUpExit] = useState(false);
   

@@ -1,8 +1,8 @@
 import PopNewCard from "../../components/PopNewCard/PopNewCard";
 
-export default function AddTaskPage () {
+export default function AddTaskPage ({onCreate}) {
     return (
-        <PopNewCard/>
+        <PopNewCard onCreate={onCreate}/>
     )
 }
 
