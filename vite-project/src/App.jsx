@@ -11,7 +11,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { useState } from "react";
 import AddTaskPage from "./Pages/AddTaskPage/AddTaskPage";
 
-function App() {
+function App({onCreate}) {
   const [userData, setUserData] = useState(null);
 
   return (
@@ -24,7 +24,7 @@ function App() {
             element={<MainPage userData={userData} setUserData={setUserData} />}
           >
             <Route path={`${appRoutes.CARD}/:cardId`} element={<CardPage />} />
-            <Route path={appRoutes.NEWCARD} element={<AddTaskPage />} />
+            <Route path={appRoutes.NEWCARD} element={<AddTaskPage onCreate={onCreate} />} />
           </Route>
         </Route>
         <Route path={appRoutes.LOGIN} element={<LoginPage />} />
