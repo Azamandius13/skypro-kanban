@@ -10,8 +10,9 @@ import NotFoundPage from "./Pages/NotFoundPage";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { useState } from "react";
 import AddTaskPage from "./Pages/AddTaskPage/AddTaskPage";
+import "react-day-picker/dist/style.css";
 
-function App({onCreate}) {
+function App() {
   const [userData, setUserData] = useState(null);
 
   return (
@@ -24,7 +25,7 @@ function App({onCreate}) {
             element={<MainPage userData={userData} setUserData={setUserData} />}
           >
             <Route path={`${appRoutes.CARD}/:cardId`} element={<CardPage />} />
-            <Route path={appRoutes.NEWCARD} element={<AddTaskPage onCreate={onCreate} />} />
+            <Route path={appRoutes.NEWCARD} element={<AddTaskPage/>} />
           </Route>
         </Route>
         <Route path={appRoutes.LOGIN} element={<LoginPage />} />

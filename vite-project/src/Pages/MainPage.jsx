@@ -24,8 +24,7 @@ export default function MainPage() {
       console.log(userData.token);
       console.log("Добавляю задачу");
       navigate(appRoutes.MAIN);
-    }).
-    getTasks({ token: userData.token })
+    }).then(() => getTasks({ token: userData.token }))
     .then((data) => {
       console.log(data.tasks);
       setCards(data.tasks);
@@ -63,7 +62,7 @@ export default function MainPage() {
     <>
       <Wrapper>
         {/* <PopNewCard /> */}
-        <Outlet onCreate = {onCreate} />
+        <Outlet context = {onCreate} />
         <Header addCard={addCard} userData = {userData} />
         <Main cardList={cards} isLoaded={isLoaded} />
       </Wrapper>

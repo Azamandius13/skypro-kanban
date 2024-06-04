@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Calendar } from "../Calendar/Calendar";
 import { appRoutes } from "../../lib/approutes";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
-function PopNewCard({onCreate}) {
+
+function PopNewCard() {
+  const onCreate = useOutletContext()
   const [selected, setSelected] = useState();
   const [newtask, setNewTask] = useState({
     title: "",
@@ -33,12 +35,12 @@ function PopNewCard({onCreate}) {
   };
 
   return (
-    <div className="pop-new-card" id="popNewCard">
+    <PopNewCard>
       <div className="pop-new-card__container">
         <div className="pop-new-card__block">
           <div className="pop-new-card__content">
-            <h3 className="pop-new-card__ttl">Создание задачи</h3>
-            <Link to={appRoutes.MAIN}>
+              <h3 className="pop-new-card__ttl">Создание задачи</h3>
+              <Link to={appRoutes.MAIN}>
               <a href="#" className="pop-new-card__close">
                 ✖
               </a>
@@ -146,7 +148,7 @@ function PopNewCard({onCreate}) {
           </div>
         </div>
       </div>
-    </div>
+    </PopNewCard>
   );
 }
 
