@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Calendar } from "../Calendar/Calendar";
 import { appRoutes } from "../../lib/approutes";
 import { Link, useOutletContext } from "react-router-dom";
+import { CalendarTtl, FormNewArea, FormNewBlock, FormNewInput, PopNewCardBlock, PopNewCardCalendar, PopNewCardClose, PopNewCardContainer, PopNewCardContent, PopNewCardForm, PopNewCardS, PopNewCardTtl, PopNewCardWrap, Subttl } from "./PopNewCard.styled";
 
 
 function PopNewCard() {
@@ -35,28 +36,23 @@ function PopNewCard() {
   };
 
   return (
-    <PopNewCard>
-      <div className="pop-new-card__container">
-        <div className="pop-new-card__block">
-          <div className="pop-new-card__content">
-              <h3 className="pop-new-card__ttl">Создание задачи</h3>
+    <PopNewCardS>
+      <PopNewCardContainer>
+        <PopNewCardBlock>
+          <PopNewCardContent>
+              <PopNewCardTtl>Создание задачи</PopNewCardTtl>
               <Link to={appRoutes.MAIN}>
-              <a href="#" className="pop-new-card__close">
+              <PopNewCardClose>
                 ✖
-              </a>
+              </PopNewCardClose>
             </Link>
-            <div className="pop-new-card__wrap">
-              <form
-                className="pop-new-card__form form-new"
-                id="formNewCard"
-                action="#"
-              >
-                <div className="form-new__block">
-                  <label htmlFor="formTitle" className="subttl">
+            <PopNewCardWrap>
+              <PopNewCardForm>
+                <FormNewBlock>
+                  <Subttl>
                     Название задачи
-                  </label>
-                  <input
-                    className="form-new__input"
+                  </Subttl>
+                  <FormNewInput
                     type="text"
                     name="title"
                     value={newtask.title}
@@ -64,13 +60,12 @@ function PopNewCard() {
                     id="formTitle"
                     placeholder="Введите название задачи..."
                   />
-                </div>
-                <div className="form-new__block">
-                  <label htmlFor="textArea" className="subttl">
+                </FormNewBlock>
+                <FormNewBlock>
+                  <Subttl>
                     Описание задачи
-                  </label>
-                  <textarea
-                    className="form-new__area"
+                  </Subttl>
+                  <FormNewArea
                     name="description"
                     id="textArea"
                     placeholder="Введите описание задачи..."
@@ -78,13 +73,13 @@ function PopNewCard() {
                     onChange={handleInputChange}
                     defaultValue={""}
                   />
-                </div>
-              </form>
-              <div className="pop-new-card__calendar calendar">
-                <p className="calendar__ttl subttl">Даты</p>
+                </FormNewBlock>
+              </PopNewCardForm>
+              <PopNewCardCalendar>
+                <CalendarTtl>Даты</CalendarTtl>
                 <Calendar selected={selected} setSelected={setSelected} />
-              </div>
-            </div>
+              </PopNewCardCalendar>
+            </PopNewCardWrap>
             {/* <div className="pop-new-card__categories categories">
                 <p className="categories__p subttl">Категория</p>
                 <div className="categories__themes">
@@ -145,10 +140,10 @@ function PopNewCard() {
                 Создать задачу
               </button>
             </Link>
-          </div>
-        </div>
-      </div>
-    </PopNewCard>
+          </PopNewCardContent>
+        </PopNewCardBlock>
+      </PopNewCardContainer>
+    </PopNewCardS>
   );
 }
 
