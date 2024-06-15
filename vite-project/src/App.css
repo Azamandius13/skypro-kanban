@@ -92,6 +92,34 @@ body {
   color: #ff6d00;
 }
 
+.CatThemeOrange {
+  background-color: #ffe4c2;
+  color: #ff6d00;
+  padding: 8px 20px 8px 20px;
+  font-size: 14px;
+  border-radius: 24px;
+}
+
+
+.CatThemeGreen {
+  background-color: #b4fdd1;
+  color: #06b16e;
+  padding: 8px 20px 8px 20px;
+  font-size: 14px;
+  border-radius: 24px;
+}
+ 
+
+.CatThemePurple {
+  background-color: #e9d4ff;
+  color: #9a48f1;
+  padding: 8px 20px 8px 20px;
+  font-size: 14px;
+  border-radius: 24px;
+}
+ 
+ 
+
 ._green {
   background-color: #b4fdd1;
   color: #06b16e;
@@ -516,6 +544,11 @@ body {
 .categories {
   margin-bottom: 20px;
 }
+
+
+
+
+
 .categories__themes {
   display: flex;
   flex-wrap: nowrap;
