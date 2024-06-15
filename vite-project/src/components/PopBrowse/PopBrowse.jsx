@@ -1,20 +1,27 @@
 import { Link, useParams } from "react-router-dom";
 import { appRoutes } from "../../lib/approutes";
-import { PopBrowseButtonExit } from "./PopBrowse.styled";
-import { Calendar } from "../Calendar/Calendar";  
+import { BtnDelete, PopBrowseButtonExit } from "./PopBrowse.styled";
+import { Calendar } from "../Calendar/Calendar";
 import { useCardListContext } from "../../contexts/cardlist";
+import { useState } from "react";
+import { useUser } from "../../hooks/useUser";
+import { deleteTaskApi } from "../../api";
 
 function PopBrowse() {
-
- const cardlist = useCardListContext();
+  const { userData } = useUser();
+  const cardlist = useCardListContext();
 
   let { cardId } = useParams();
-  let cardtitle = cardlist.find(card => card._id === cardId).title;
-  let cardtopic = cardlist.find(card => card._id === cardId).topic;
-  let cardstatus =  cardlist.find(card => card._id === cardId).status;
-  let carddescription = cardlist.find(card => card._id === cardId).description;
-  let carddate = cardlist.find(card => card._id === cardId).date;
- 
+  let cardtitle = cardlist.find((card) => card._id === cardId).title;
+  let cardtopic = cardlist.find((card) => card._id === cardId).topic;
+  let cardstatus = cardlist.find((card) => card._id === cardId).status;
+  let carddescription = cardlist.find(
+    (card) => card._id === cardId
+  ).description;
+  let carddate = cardlist.find((card) => card._id === cardId).date;
+
+  const [selected, setSelected] = useState(carddate);
+
   let color;
   switch (cardtopic) {
     case "Web Design":
@@ -30,6 +37,10 @@ function PopBrowse() {
       break;
   }
 
+  const deleteTask = () => {
+    deleteTaskApi(cardId, userData.token);
+    console.log("Удаляю задачу : " + cardId);
+  };
 
   return (
     <div className="pop-browse" id="popBrowse">
@@ -37,10 +48,8 @@ function PopBrowse() {
         <div className="pop-browse__block">
           <div className="pop-browse__content">
             <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">Название задачи:{cardtitle}</h3>         
-                <div className={color}>
-                  {cardtopic}
-                </div>
+              <h3 className="pop-browse__ttl">Название задачи:{cardtitle}</h3>
+              <div className={color}>{cardtopic}</div>
             </div>
             <div className="pop-browse__status status">
               <p className="status__p subttl">Статус</p>
@@ -83,7 +92,7 @@ function PopBrowse() {
                 </div>
               </form>
 
-              <Calendar selected={carddate}/>
+              <Calendar selected={selected} setSelected={setSelected} />
             </div>
             <div className="theme-down__categories theme-down">
               <p className="categories__p subttl">Категория</p>
@@ -114,12 +123,7 @@ function PopBrowse() {
                 <button className="btn-edit__edit _btn-bor _hover03">
                   <a href="#">Отменить</a>
                 </button>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
-                  id="btnDelete"
-                >
-                  <a href="#">Удалить задачу</a>
-                </button>
+                <BtnDelete onClick={deleteTask}>Удалить задачу</BtnDelete>
               </div>
               <Link to={appRoutes.MAIN}>
                 <PopBrowseButtonExit>Закрыть</PopBrowseButtonExit>

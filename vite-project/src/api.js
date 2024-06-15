@@ -69,3 +69,16 @@ export async function addNewTaskApi(
     throw new Error("Какая то ошибка бро");
   }
 }
+
+export async function deleteTaskApi(id, token ) {
+  const response = await fetch(API_URL + id , {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    method: "DELETE",
+  })
+  if (!response.ok) {
+    throw new Error("Какая то ошибка бро");
+  }
+
+}

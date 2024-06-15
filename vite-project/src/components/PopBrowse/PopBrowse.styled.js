@@ -8,3 +8,7 @@ export const PopBrowseButtonExit = styled.button`
     background-color : #565EEF;
     color: #FFFFFF;
 `
+
+export const BtnDelete = styled.button`
+
+`
