@@ -1,11 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 import { appRoutes } from "../../lib/approutes";
 import { PopBrowseButtonExit } from "./PopBrowse.styled";
-import { Calendar } from "../Calendar/Calendar";
+import { Calendar } from "../Calendar/Calendar";  
 import { useCardListContext } from "../../contexts/cardlist";
 
 function PopBrowse() {
-  const cardlist = useCardListContext();
+
+ const cardlist = useCardListContext();
 
   let { cardId } = useParams();
   return (
@@ -14,10 +15,7 @@ function PopBrowse() {
         <div className="pop-browse__block">
           <div className="pop-browse__content">
             <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">
-                Название задачи:{cardId}
-                {cardlist[0]}{" "}
-              </h3>
+              <h3 className="pop-browse__ttl">Название задачи:{cardId}{cardlist[0]} </h3>
               <div className="categories__theme theme-top _orange _active-category">
                 <p className="_orange">Web Design</p>
               </div>
@@ -167,7 +165,7 @@ function PopBrowse() {
                   </div>
                 </div>
               </div> */}
-              <Calendar />
+              <Calendar/>
             </div>
             <div className="theme-down__categories theme-down">
               <p className="categories__p subttl">Категория</p>
