@@ -6,6 +6,7 @@ import { CalendarTtl, FormNewArea, FormNewBlock, FormNewInput, PopNewCardBlock, 
 
 
 function PopNewCard() {
+
   const onCreate = useOutletContext()
   const [selected, setSelected] = useState();
   const [newtask, setNewTask] = useState({
