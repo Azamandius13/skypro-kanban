@@ -71,7 +71,7 @@ export async function addNewTaskApi(
 }
 
 export async function deleteTaskApi(id, token ) {
-  const response = await fetch(API_URL + id , {
+  const response = await fetch(API_URL + "/" +id , {
     headers: {
       Authorization: `Bearer ${token}`,
     },

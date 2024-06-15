@@ -123,7 +123,9 @@ function PopBrowse() {
                 <button className="btn-edit__edit _btn-bor _hover03">
                   <a href="#">Отменить</a>
                 </button>
-                <BtnDelete onClick={deleteTask}>Удалить задачу</BtnDelete>
+                <Link to={appRoutes.MAIN}>
+                  <BtnDelete onClick={deleteTask}>Удалить задачу</BtnDelete>
+                </Link>
               </div>
               <Link to={appRoutes.MAIN}>
                 <PopBrowseButtonExit>Закрыть</PopBrowseButtonExit>
