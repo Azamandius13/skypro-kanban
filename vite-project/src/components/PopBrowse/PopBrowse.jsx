@@ -83,7 +83,7 @@ function PopBrowse() {
                 </div>
               </form>
 
-              <Calendar/>
+              <Calendar selected={carddate}/>
             </div>
             <div className="theme-down__categories theme-down">
               <p className="categories__p subttl">Категория</p>
