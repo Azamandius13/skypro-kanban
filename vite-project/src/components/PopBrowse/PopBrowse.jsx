@@ -9,13 +9,15 @@ function PopBrowse() {
  const cardlist = useCardListContext();
 
   let { cardId } = useParams();
+  let cardname = cardlist.find(card => card._id === cardId).title
+
   return (
     <div className="pop-browse" id="popBrowse">
       <div className="pop-browse__container">
         <div className="pop-browse__block">
           <div className="pop-browse__content">
             <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">Название задачи:{cardId}{cardlist[0]} </h3>
+              <h3 className="pop-browse__ttl">Название задачи:{cardname}</h3>
               <div className="categories__theme theme-top _orange _active-category">
                 <p className="_orange">Web Design</p>
               </div>

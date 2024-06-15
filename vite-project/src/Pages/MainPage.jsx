@@ -59,13 +59,15 @@ export default function MainPage() {
     ]);
   }
 
+  console.log(cards);
+
   return (
     <>
       <Wrapper>
+      <CardListContext.Provider value={cards}>
         {/* <PopNewCard /> */}
         <Outlet context={onCreate} />
         <Header addCard={addCard} userData={userData} />
-        <CardListContext.Provider value={cards}>
           <Main cardList={cards} isLoaded={isLoaded} />
         </CardListContext.Provider>
       </Wrapper>
