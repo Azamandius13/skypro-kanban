@@ -85,7 +85,7 @@ function PopBrowse() {
                     className="form-browse__area"
                     name="text"
                     id="textArea01"
-                    readOnly
+                    readOnly = {false}
                     placeholder={carddescription}
                     defaultValue={carddescription}
                   />
@@ -115,7 +115,7 @@ function PopBrowse() {
                 </button>
               </Link>
             </div>
-            <div className="pop-browse__btn-edit _hide">
+            <div className="pop-browse__btn-edit ">
               <div className="btn-group">
                 <button className="btn-edit__edit _btn-bg _hover01">
                   <a href="#">Сохранить</a>
