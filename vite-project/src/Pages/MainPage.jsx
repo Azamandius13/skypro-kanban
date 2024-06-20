@@ -39,7 +39,16 @@ export default function MainPage() {
     editTaskApi( cardId,  userData.token ,{newcardlist})
     .then(() => {
       console.log("Редактирую задачу");
+      navigate(appRoutes.MAIN);
     })
+    .then(() => getTasks({ token: userData.token }))
+    .then((data) => {
+      console.log(data.tasks);
+      setCards(data.tasks);
+    })
+    .then(() => {
+      setIsLoaded(false);
+    });
   }
 
 
