@@ -9,16 +9,25 @@ import { deleteTaskApi } from "../../api";
 
 function PopBrowse() {
   const { userData } = useUser();
-  const cardlist = useCardListContext();
+  const {cardlist} = useCardListContext();
+  
+  const [isEdit, setIsEdit] = useState(false);
 
-  let { cardId } = useParams();
-  let cardtitle = cardlist.find((card) => card._id === cardId).title;
-  let cardtopic = cardlist.find((card) => card._id === cardId).topic;
-  let cardstatus = cardlist.find((card) => card._id === cardId).status;
-  let carddescription = cardlist.find(
+  const [newcardlist, SetNewCardList] = useState();
+
+
+  function editSwitch() {
+    setIsEdit(!isEdit);
+  }
+
+  const { cardId } = useParams();
+  const cardtitle = cardlist.find((card) => card._id === cardId).title;
+  const cardtopic = cardlist.find((card) => card._id === cardId).topic;
+  const cardstatus = cardlist.find((card) => card._id === cardId).status;
+  const carddescription = cardlist.find(
     (card) => card._id === cardId
   ).description;
-  let carddate = cardlist.find((card) => card._id === cardId).date;
+  const carddate = cardlist.find((card) => card._id === cardId).date;
 
   const [selected, setSelected] = useState(carddate);
 
@@ -37,6 +46,22 @@ function PopBrowse() {
       break;
   }
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    SetNewCardList({
+      ...newcardlist,
+      [name]: value,
+      topic: cardtopic,
+      title : cardtitle, 
+      date : selected,
+    });
+    console.log(newcardlist)
+  };
+
+
+
+
+
   const deleteTask = () => {
     deleteTaskApi(cardId, userData.token);
     console.log("Удаляю задачу : " + cardId);
@@ -54,21 +79,70 @@ function PopBrowse() {
             <div className="pop-browse__status status">
               <p className="status__p subttl">Статус</p>
               <div className="status__themes">
-                <div className="status__theme _hide">
-                  <p>Без статуса</p>
-                </div>
-                <div className="status__theme _gray">
-                  <p className="_gray">{cardstatus}</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>В работе</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Тестирование</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Готово</p>
-                </div>
+                {isEdit ? (
+                  <>
+                    <div className="radio-toolbar_status">
+                      <input
+                        type="radio"
+                        id="radio1"
+                        name="status"
+                        value="Без статуса"
+                        onChange={handleInputChange}
+                      />
+                      <label className="radio1_status" htmlFor="radio1">
+                        Без статуса
+                      </label>
+
+                      <input
+                        type="radio"
+                        id="radio2"
+                        name="status"
+                        value="Нужно сделать"
+                        onChange={handleInputChange}
+                      />
+                      <label className="radio1_status" htmlFor="radio2">
+                        Нужно сделать
+                      </label>
+
+                      <input
+                        type="radio"
+                        id="radio3"
+                        name="status"
+                        value="В работе"
+                        onChange={handleInputChange}
+                      />
+                      <label className="radio1_status" htmlFor="radio3">
+                        В работе
+                      </label>
+
+                      <input
+                        type="radio"
+                        id="radio4"
+                        name="status"
+                        value="Тестирование"
+                        onChange={handleInputChange}
+                      />
+                      <label className="radio1_status" htmlFor="radio4">
+                        Тестирование
+                      </label>
+
+                      <input
+                        type="radio"
+                        id="radio5"
+                        name="status"
+                        value="Готово"
+                        onChange={handleInputChange}
+                      />
+                      <label className="radio1_status" htmlFor="radio5">
+                        Готово
+                      </label>
+                    </div>
+                  </>
+                ) : (
+                  <div className="status__theme ">
+                    <p>{cardstatus}</p>
+                  </div>
+                )}
               </div>
             </div>
             <div className="pop-browse__wrap">
@@ -83,11 +157,12 @@ function PopBrowse() {
                   </label>
                   <textarea
                     className="form-browse__area"
-                    name="text"
+                    name="description"
                     id="textArea01"
-                    readOnly = {false}
-                    placeholder={carddescription}
+                    readOnly={!isEdit}
+                    placeholder="Описание задачи"
                     defaultValue={carddescription}
+                    onChange={handleInputChange}
                   />
                 </div>
               </form>
@@ -100,37 +175,46 @@ function PopBrowse() {
                 <p className="_orange">Web Design</p>
               </div>
             </div>
-            <div className="pop-browse__btn-browse 1231231">
-              <div className="btn-group">
-                <button className="btn-browse__edit _btn-bor _hover03">
-                  <a href="#">Редактировать задачу</a>
-                </button>
-                <button className="btn-browse__delete _btn-bor _hover03">
-                  <a href="#">Удалить задачу</a>
-                </button>
-              </div>
-              <Link to={appRoutes.MAIN}>
-                <button className="btn-browse__close _btn-bg _hover01">
-                  Закрыть
-                </button>
-              </Link>
-            </div>
-            <div className="pop-browse__btn-edit ">
-              <div className="btn-group">
-                <button className="btn-edit__edit _btn-bg _hover01">
-                  <a href="#">Сохранить</a>
-                </button>
-                <button className="btn-edit__edit _btn-bor _hover03">
-                  <a href="#">Отменить</a>
-                </button>
+            {isEdit ? (
+              <div className="pop-browse__btn-edit ">
+                <div className="btn-group">
+                  <button className="btn-edit__edit _btn-bg _hover01">
+                    Сохранить
+                  </button>
+                  <button
+                    className="btn-edit__edit _btn-bor _hover03"
+                    onClick={editSwitch}
+                  >
+                    Отменить
+                  </button>
+                  <Link to={appRoutes.MAIN}>
+                    <BtnDelete onClick={deleteTask}>Удалить задачу</BtnDelete>
+                  </Link>
+                </div>
                 <Link to={appRoutes.MAIN}>
-                  <BtnDelete onClick={deleteTask}>Удалить задачу</BtnDelete>
+                  <PopBrowseButtonExit>Закрыть</PopBrowseButtonExit>
                 </Link>
               </div>
-              <Link to={appRoutes.MAIN}>
-                <PopBrowseButtonExit>Закрыть</PopBrowseButtonExit>
-              </Link>
-            </div>
+            ) : (
+              <div className="pop-browse__btn-browse">
+                <div className="btn-group">
+                  <button
+                    className="btn-browse__edit _btn-bor _hover03"
+                    onClick={editSwitch}
+                  >
+                    Редактировать задачу
+                  </button>
+                  <button onClick={deleteTask} className="btn-browse__delete _btn-bor _hover03">
+                    Удалить задачу
+                  </button>
+                </div>
+                <Link to={appRoutes.MAIN}>
+                  <button className="btn-browse__close _btn-bg _hover01">
+                    Закрыть
+                  </button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

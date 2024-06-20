@@ -82,3 +82,25 @@ export async function deleteTaskApi(id, token ) {
   }
 
 }
+
+export async function editTaskApi(  id , token,
+  { title, topic, status, description, date }
+) {
+  const response = await fetch(API_URL + "/" + id, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    method: "PUT",
+    body: JSON.stringify({
+      title,
+      topic,
+      status,
+      description,
+      date,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error("Какая то ошибка бро");
+  }
+  console.log(response)
+}

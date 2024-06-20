@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { cardList } from "../data";
 import { Outlet, useNavigate } from "react-router-dom";
-import { addNewTaskApi, getTasks } from "../api";
+import { addNewTaskApi, editTaskApi, getTasks } from "../api";
 import { useUser } from "../hooks/useUser";
 import { appRoutes } from "../lib/approutes";
 import { CardListContext } from "../contexts/cardlist";
@@ -34,6 +34,15 @@ export default function MainPage() {
         setIsLoaded(false);
       });
   }
+
+  function onEdit(cardId,newcardlist) {
+    editTaskApi( cardId,  userData.token ,{newcardlist})
+    .then(() => {
+      console.log("Редактирую задачу");
+    })
+  }
+
+
 
   useEffect(() => {
     getTasks({ token: userData.token })
@@ -64,10 +73,10 @@ export default function MainPage() {
   return (
     <>
       <Wrapper>
-      <CardListContext.Provider value={cards}>
-        {/* <PopNewCard /> */}
-        <Outlet context={onCreate} />
-        <Header addCard={addCard} userData={userData} />
+        <CardListContext.Provider value={cards}>
+          {/* <PopNewCard /> */}
+          <Outlet context={onCreate} />
+          <Header addCard={addCard} userData={userData} />
           <Main cardList={cards} isLoaded={isLoaded} />
         </CardListContext.Provider>
       </Wrapper>
