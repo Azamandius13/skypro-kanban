@@ -9,25 +9,22 @@ import { deleteTaskApi } from "../../api";
 
 function PopBrowse() {
   const { userData } = useUser();
-  const {cardlist} = useCardListContext();
-  
+  const { cards, onEdit } = useCardListContext();
+
   const [isEdit, setIsEdit] = useState(false);
 
   const [newcardlist, SetNewCardList] = useState();
-
 
   function editSwitch() {
     setIsEdit(!isEdit);
   }
 
   const { cardId } = useParams();
-  const cardtitle = cardlist.find((card) => card._id === cardId).title;
-  const cardtopic = cardlist.find((card) => card._id === cardId).topic;
-  const cardstatus = cardlist.find((card) => card._id === cardId).status;
-  const carddescription = cardlist.find(
-    (card) => card._id === cardId
-  ).description;
-  const carddate = cardlist.find((card) => card._id === cardId).date;
+  const cardtitle = cards.find((card) => card._id === cardId).title;
+  const cardtopic = cards.find((card) => card._id === cardId).topic;
+  const cardstatus = cards.find((card) => card._id === cardId).status;
+  const carddescription = cards.find((card) => card._id === cardId).description;
+  const carddate = cards.find((card) => card._id === cardId).date;
 
   const [selected, setSelected] = useState(carddate);
 
@@ -52,15 +49,19 @@ function PopBrowse() {
       ...newcardlist,
       [name]: value,
       topic: cardtopic,
-      title : cardtitle, 
-      date : selected,
+      title: cardtitle,
+      date: selected,
     });
-    console.log(newcardlist)
+    console.log(newcardlist);
   };
 
-
-
-
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    onEdit(cardId, userData.token, { newcardlist }).then(() => {
+      console.log("редактирую задачу " + cardId);
+      setIsEdit(!isEdit);
+    });
+  };
 
   const deleteTask = () => {
     deleteTaskApi(cardId, userData.token);
@@ -178,7 +179,10 @@ function PopBrowse() {
             {isEdit ? (
               <div className="pop-browse__btn-edit ">
                 <div className="btn-group">
-                  <button className="btn-edit__edit _btn-bg _hover01">
+                  <button
+                    onClick={handleEditSubmit}
+                    className="btn-edit__edit _btn-bg _hover01"
+                  >
                     Сохранить
                   </button>
                   <button
@@ -204,7 +208,10 @@ function PopBrowse() {
                   >
                     Редактировать задачу
                   </button>
-                  <button onClick={deleteTask} className="btn-browse__delete _btn-bor _hover03">
+                  <button
+                    onClick={deleteTask}
+                    className="btn-browse__delete _btn-bor _hover03"
+                  >
                     Удалить задачу
                   </button>
                 </div>

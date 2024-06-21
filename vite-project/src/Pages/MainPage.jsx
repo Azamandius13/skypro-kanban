@@ -35,11 +35,10 @@ export default function MainPage() {
       });
   }
 
-  function onEdit(cardId,newcardlist) {
-    editTaskApi( cardId,  userData.token ,{newcardlist})
+  function onEdit(id, token , newcardlist) {
+    editTaskApi( id,  token ,{newcardlist})
     .then(() => {
       console.log("Редактирую задачу");
-      navigate(appRoutes.MAIN);
     })
     .then(() => getTasks({ token: userData.token }))
     .then((data) => {
@@ -82,7 +81,7 @@ export default function MainPage() {
   return (
     <>
       <Wrapper>
-        <CardListContext.Provider value={cards}>
+        <CardListContext.Provider value={{cards, onEdit}}>
           {/* <PopNewCard /> */}
           <Outlet context={onCreate} />
           <Header addCard={addCard} userData={userData} />
