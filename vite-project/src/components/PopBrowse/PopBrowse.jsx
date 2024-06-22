@@ -5,15 +5,12 @@ import { Calendar } from "../Calendar/Calendar";
 import { useCardListContext } from "../../contexts/cardlist";
 import { useState } from "react";
 import { useUser } from "../../hooks/useUser";
-import { deleteTaskApi } from "../../api";
 
 function PopBrowse() {
   const { userData } = useUser();
-  const { cards, onEdit } = useCardListContext();
+  const { cards, onEdit, onDelete } = useCardListContext();
 
   const [isEdit, setIsEdit] = useState(false);
-
-  const [newcardlist, SetNewCardList] = useState();
 
   function editSwitch() {
     setIsEdit(!isEdit);
@@ -25,6 +22,14 @@ function PopBrowse() {
   const cardstatus = cards.find((card) => card._id === cardId).status;
   const carddescription = cards.find((card) => card._id === cardId).description;
   const carddate = cards.find((card) => card._id === cardId).date;
+
+  const [newcardlist, SetNewCardList] = useState({
+    title: cardtitle,
+    topic: cardtopic,
+    status: cardstatus,
+    description: carddescription,
+    date: carddate,
+  });
 
   const [selected, setSelected] = useState(carddate);
 
@@ -57,15 +62,11 @@ function PopBrowse() {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    onEdit(cardId, userData.token, { newcardlist }).then(() => {
-      console.log("редактирую задачу " + cardId);
-      setIsEdit(!isEdit);
-    });
+    onEdit(cardId, userData.token, newcardlist).then(() => editSwitch())
   };
 
   const deleteTask = () => {
-    deleteTaskApi(cardId, userData.token);
-    console.log("Удаляю задачу : " + cardId);
+    onDelete(cardId);
   };
 
   return (

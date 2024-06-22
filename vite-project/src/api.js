@@ -102,5 +102,4 @@ export async function editTaskApi(  id , token,
   if (!response.ok) {
     throw new Error("Какая то ошибка бро");
   }
-  console.log(response)
 }

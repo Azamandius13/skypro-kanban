@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { cardList } from "../data";
 import { Outlet, useNavigate } from "react-router-dom";
-import { addNewTaskApi, editTaskApi, getTasks } from "../api";
+import { addNewTaskApi, deleteTaskApi, editTaskApi, getTasks } from "../api";
 import { useUser } from "../hooks/useUser";
 import { appRoutes } from "../lib/approutes";
 import { CardListContext } from "../contexts/cardlist";
@@ -36,9 +36,21 @@ export default function MainPage() {
   }
 
   function onEdit(id, token , newcardlist) {
-    editTaskApi( id,  token ,{newcardlist})
+    editTaskApi( id,  token , newcardlist)
     .then(() => {
-      console.log("Редактирую задачу");
+      console.log("Редактирую задачу" + id);
+    })
+    .then(() => getTasks({ token: userData.token }))
+    .then((data) => {
+      console.log(data.tasks);
+      setCards(data.tasks);
+    })
+  }
+
+  function onDelete(id) {
+    deleteTaskApi(id,  userData.token)
+    .then(() => {
+      console.log("Удаляю задачу " + id );
     })
     .then(() => getTasks({ token: userData.token }))
     .then((data) => {
@@ -46,9 +58,11 @@ export default function MainPage() {
       setCards(data.tasks);
     })
     .then(() => {
+      navigate(appRoutes.MAIN);
       setIsLoaded(false);
     });
   }
+
 
 
 
@@ -81,7 +95,7 @@ export default function MainPage() {
   return (
     <>
       <Wrapper>
-        <CardListContext.Provider value={{cards, onEdit}}>
+        <CardListContext.Provider value={{cards, onEdit , onDelete}}>
           {/* <PopNewCard /> */}
           <Outlet context={onCreate} />
           <Header addCard={addCard} userData={userData} />
