@@ -36,7 +36,7 @@ export default function MainPage() {
   }
 
   function onEdit(id, token , newcardlist) {
-    editTaskApi( id,  token , newcardlist)
+    return editTaskApi( id,  token , newcardlist)
     .then(() => {
       console.log("Редактирую задачу" + id);
     })

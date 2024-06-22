@@ -15,7 +15,6 @@ function PopBrowse() {
   function editSwitch() {
     setIsEdit(!isEdit);
   }
-
   const { cardId } = useParams();
   const cardtitle = cards.find((card) => card._id === cardId).title;
   const cardtopic = cards.find((card) => card._id === cardId).topic;
@@ -62,7 +61,7 @@ function PopBrowse() {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    onEdit(cardId, userData.token, newcardlist).then(() => editSwitch())
+    onEdit(cardId, userData.token, newcardlist).then(() => editSwitch());
   };
 
   const deleteTask = () => {
