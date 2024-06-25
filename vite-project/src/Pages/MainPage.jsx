@@ -5,7 +5,6 @@ import Header from "../components/Header/Header";
 import Main from "../components/Main/Main";
 import { useState } from "react";
 import { useEffect } from "react";
-import { cardList } from "../data";
 import { Outlet, useNavigate } from "react-router-dom";
 import { addNewTaskApi, deleteTaskApi, editTaskApi, getTasks } from "../api";
 import { useUser } from "../hooks/useUser";
@@ -14,7 +13,7 @@ import { CardListContext } from "../contexts/cardlist";
 
 export default function MainPage() {
   const { userData } = useUser();
-  const [cards, setCards] = useState(cardList);
+  const [cards, setCards] = useState([]);
   const [isLoaded, setIsLoaded] = useState(true);
   let navigate = useNavigate();
 

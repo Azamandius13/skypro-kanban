@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Container } from "../Common/Common.styled";
-import { ExitButtonHeader, HeaderM, PopUserSetTheme } from "./Header.styled";
+import { ExitButtonHeader, HeaderM} from "./Header.styled";
 import { HeaderBlock } from "./Header.styled";
 import { HeaderLogo } from "./Header.styled";
 import { HeaderNav } from "./Header.styled";
@@ -10,7 +10,7 @@ import { HeaderPopUserSet } from "./Header.styled";
 import { PopUserSetName } from "./Header.styled";
 import { HeaderLogoImg } from "./Header.styled";
 import { PopUserSetMail } from "./Header.styled";
-import { PopUserSetThemeInput } from "./Header.styled";
+// import { PopUserSetThemeInput } from "./Header.styled";
 import PopExit from "../PopExit/PopExit";
 import { appRoutes } from "../../lib/approutes";
 
@@ -52,10 +52,10 @@ function Header({userData}) {
               <HeaderPopUserSet>
                 <PopUserSetName>{userData.name}</PopUserSetName>
                 <PopUserSetMail>{userData.login}</PopUserSetMail>
-                <PopUserSetTheme>
+                {/* <PopUserSetTheme>
                   <p>Темная тема</p>
                   <PopUserSetThemeInput type="checkbox" name="checkbox" />
-                </PopUserSetTheme>
+                </PopUserSetTheme> */}
                 <ExitButtonHeader onClick={togglePopUpExit}>
                   Выйти
                 </ExitButtonHeader>

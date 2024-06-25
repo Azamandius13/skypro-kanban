@@ -15,19 +15,31 @@ function PopBrowse() {
   function editSwitch() {
     setIsEdit(!isEdit);
   }
+  
   const { cardId } = useParams();
-  const cardtitle = cards.find((card) => card._id === cardId).title;
-  const cardtopic = cards.find((card) => card._id === cardId).topic;
-  const cardstatus = cards.find((card) => card._id === cardId).status;
-  const carddescription = cards.find((card) => card._id === cardId).description;
-  const carddate = cards.find((card) => card._id === cardId).date;
 
+    let cardtitle;
+    let cardtopic;
+    let cardstatus;
+    let carddescription;
+    let carddate;
+
+
+  if (cards.length) {
+    cardtitle = cards.find((card) => card._id === cardId).title;
+    cardtopic = cards.find((card) => card._id === cardId).topic;
+    cardstatus = cards.find((card) => card._id === cardId).status;
+    carddescription = cards.find((card) => card._id === cardId).description;
+    carddate = cards.find((card) => card._id === cardId).date;
+  }
+
+
+ 
   const [newcardlist, SetNewCardList] = useState({
     title: cardtitle,
     topic: cardtopic,
     status: cardstatus,
     description: carddescription,
-    date: carddate,
   });
 
   const [selected, setSelected] = useState(carddate);
@@ -48,20 +60,20 @@ function PopBrowse() {
   }
 
   const handleInputChange = (e) => {
+    
     const { name, value } = e.target;
     SetNewCardList({
       ...newcardlist,
-      [name]: value,
-      topic: cardtopic,
-      title: cardtitle,
-      date: selected,
+      [name]: value
+
     });
-    console.log(newcardlist);
+    console.log("Состояние " + newcardlist);
   };
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    onEdit(cardId, userData.token, newcardlist).then(() => editSwitch());
+    const newcardslistonedit = { ...newcardlist ,  date : selected  }
+    onEdit(cardId, userData.token, newcardslistonedit ).then(() => editSwitch());
   };
 
   const deleteTask = () => {
@@ -84,6 +96,7 @@ function PopBrowse() {
                   <>
                     <div className="radio-toolbar_status">
                       <input
+                        checked={newcardlist.status === "Без статуса"}
                         type="radio"
                         id="radio1"
                         name="status"
@@ -95,6 +108,7 @@ function PopBrowse() {
                       </label>
 
                       <input
+                        checked={newcardlist.status  === "Нужно сделать"}
                         type="radio"
                         id="radio2"
                         name="status"
@@ -106,6 +120,7 @@ function PopBrowse() {
                       </label>
 
                       <input
+                        checked={newcardlist.status  === "В работе"}
                         type="radio"
                         id="radio3"
                         name="status"
@@ -117,6 +132,7 @@ function PopBrowse() {
                       </label>
 
                       <input
+                        checked={newcardlist.status  === "Тестирование"}
                         type="radio"
                         id="radio4"
                         name="status"
@@ -128,6 +144,7 @@ function PopBrowse() {
                       </label>
 
                       <input
+                        checked={newcardlist.status  === "Готово"}
                         type="radio"
                         id="radio5"
                         name="status"
