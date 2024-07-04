@@ -131,3 +131,18 @@ export const RadioToolbarInput = styled.input`
  display: none;
   color: #e1feed;
 `
+export const FormNewCreate = styled.button`
+  background-color: #565eef;
+  border-radius: 4px;
+  border: 0;
+  outline: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  color: #ffffff;
+  float: right;
+  &:hover {
+    background-color: #33399b;
+    color: #ffffff;
+  }
+`

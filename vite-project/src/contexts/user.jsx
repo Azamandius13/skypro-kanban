@@ -16,7 +16,6 @@ export const UserProvider = ({ children }) => {
   let navigate = useNavigate();
 
   const loginUser = (user) => {
-    console.log(user)
     setUserData(user);
     localStorage.setItem('user', JSON.stringify(user))
     navigate(appRoutes.MAIN);

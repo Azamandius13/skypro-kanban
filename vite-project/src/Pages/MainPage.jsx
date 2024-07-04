@@ -20,13 +20,10 @@ export default function MainPage() {
   function onCreate(taskData) {
     addNewTaskApi(userData.token, taskData)
       .then(() => {
-        console.log(userData.token);
-        console.log("Добавляю задачу");
         navigate(appRoutes.MAIN);
       })
       .then(() => getTasks({ token: userData.token }))
       .then((data) => {
-        console.log(data.tasks);
         setCards(data.tasks);
       })
       .then(() => {
@@ -37,11 +34,9 @@ export default function MainPage() {
   function onEdit(id, token , newcardlist) {
     return editTaskApi( id,  token , newcardlist)
     .then(() => {
-      console.log("Редактирую задачу" + id);
     })
     .then(() => getTasks({ token: userData.token }))
     .then((data) => {
-      console.log(data.tasks);
       setCards(data.tasks);
     })
   }
@@ -49,11 +44,9 @@ export default function MainPage() {
   function onDelete(id) {
     deleteTaskApi(id,  userData.token)
     .then(() => {
-      console.log("Удаляю задачу " + id );
     })
     .then(() => getTasks({ token: userData.token }))
     .then((data) => {
-      console.log(data.tasks);
       setCards(data.tasks);
     })
     .then(() => {
@@ -68,7 +61,6 @@ export default function MainPage() {
   useEffect(() => {
     getTasks({ token: userData.token })
       .then((data) => {
-        console.log(data.tasks);
         setCards(data.tasks);
       })
       .then(() => {
@@ -89,7 +81,6 @@ export default function MainPage() {
     ]);
   }
 
-  console.log(cards);
 
   return (
     <>

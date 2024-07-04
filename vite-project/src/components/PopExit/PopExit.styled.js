@@ -56,7 +56,6 @@ export const PopExitFormGroup = styled.div`
 `;
 
 export const PopExitExitYes = styled.button`
-  width: 153px;
   height: 30px;
   background-color: #565eef;
   border-radius: 4px;
@@ -78,7 +77,6 @@ export const PopExitExitYes = styled.button`
 `;
 
 export const PopExitExitNo = styled.button`
-  width: 203px;
   height: 30px;
   background-color: transparent;
   border-radius: 4px;

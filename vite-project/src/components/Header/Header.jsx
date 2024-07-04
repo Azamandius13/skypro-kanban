@@ -18,7 +18,6 @@ function Header({userData}) {
   const [isOpened, setIsOpened] = useState(false);
   const [isOpenedPopUpExit, setIsOpenedPopUpExit] = useState(false);
   
-  console.log(userData)
 
   function togglePopUpExit() {
     setIsOpenedPopUpExit((isOpenedPopUpExit) => !isOpenedPopUpExit);

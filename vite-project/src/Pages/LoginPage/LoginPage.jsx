@@ -31,7 +31,6 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       await login(loginData).then((data) => {
-        console.log(data)
         loginUser(data.user);
       });
     } catch (error) {

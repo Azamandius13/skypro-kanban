@@ -34,8 +34,7 @@ export default function RegisterPage(){
     e.preventDefault();
     try {
       await Registration(registerData)
-        .then((data) => {
-          console.log(data);
+        .then(() => {
         })
         .then(() => {
           navigate(appRoutes.LOGIN);

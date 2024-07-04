@@ -1,6 +1,31 @@
 import { Link, useParams } from "react-router-dom";
 import { appRoutes } from "../../lib/approutes";
-import { BtnDelete, PopBrowseButtonExit } from "./PopBrowse.styled";
+import {
+  BtnBrowseEdit,
+  BtnBrowseEditSave,
+  BtnDelete,
+  BtnGroup,
+  CatThemeGreen,
+  CatThemeOrange,
+  CatThemePurple,
+  FormBrowseArea,
+  FormBrowseBlock,
+  PopBrowseBlock,
+  PopBrowseBtnEdit,
+  PopBrowseCont,
+  PopBrowseContainer,
+  PopBrowseContent,
+  PopBrowseForm,
+  PopBrowseStatus,
+  PopBrowseTopBlock,
+  PopBrowseTtl,
+  PopBrowseWrap,
+  StatusP,
+  StatusTheme,
+  StatusThemeP,
+  StatusThemes,
+  Subttl,
+} from "./PopBrowse.styled";
 import { Calendar } from "../Calendar/Calendar";
 import { useCardListContext } from "../../contexts/cardlist";
 import { useState } from "react";
@@ -15,15 +40,14 @@ function PopBrowse() {
   function editSwitch() {
     setIsEdit(!isEdit);
   }
-  
+
   const { cardId } = useParams();
 
-    let cardtitle;
-    let cardtopic;
-    let cardstatus;
-    let carddescription;
-    let carddate;
-
+  let cardtitle;
+  let cardtopic;
+  let cardstatus;
+  let carddescription;
+  let carddate;
 
   if (cards.length) {
     cardtitle = cards.find((card) => card._id === cardId).title;
@@ -33,8 +57,6 @@ function PopBrowse() {
     carddate = cards.find((card) => card._id === cardId).date;
   }
 
-
- 
   const [newcardlist, SetNewCardList] = useState({
     title: cardtitle,
     topic: cardtopic,
@@ -44,36 +66,20 @@ function PopBrowse() {
 
   const [selected, setSelected] = useState(carddate);
 
-  let color;
-  switch (cardtopic) {
-    case "Web Design":
-      color = "CatThemeOrange";
-      break;
 
-    case "Copywriting":
-      color = "CatThemePurple";
-      break;
-
-    case "Research":
-      color = "CatThemeGreen";
-      break;
-  }
 
   const handleInputChange = (e) => {
-    
     const { name, value } = e.target;
     SetNewCardList({
       ...newcardlist,
-      [name]: value
-
+      [name]: value,
     });
-    console.log("Состояние " + newcardlist);
   };
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    const newcardslistonedit = { ...newcardlist ,  date : selected  }
-    onEdit(cardId, userData.token, newcardslistonedit ).then(() => editSwitch());
+    const newcardslistonedit = { ...newcardlist, date: selected };
+    onEdit(cardId, userData.token, newcardslistonedit).then(() => editSwitch());
   };
 
   const deleteTask = () => {
@@ -81,17 +87,39 @@ function PopBrowse() {
   };
 
   return (
-    <div className="pop-browse" id="popBrowse">
-      <div className="pop-browse__container">
-        <div className="pop-browse__block">
-          <div className="pop-browse__content">
-            <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">Название задачи:{cardtitle}</h3>
-              <div className={color}>{cardtopic}</div>
-            </div>
-            <div className="pop-browse__status status">
-              <p className="status__p subttl">Статус</p>
-              <div className="status__themes">
+    <PopBrowseCont>
+      <PopBrowseContainer>
+        <PopBrowseBlock>
+          <PopBrowseContent>
+            <PopBrowseTopBlock>
+              <PopBrowseTtl>Название задачи:{cardtitle}</PopBrowseTtl>
+              {cardtopic === "Web Design" ? (
+                <>
+                  <CatThemeOrange>{cardtopic}</CatThemeOrange>
+                </>
+              ) : (
+                <></>
+              )}
+
+              {cardtopic === "Copywriting" ? (
+                <>
+                  <CatThemePurple>{cardtopic}</CatThemePurple>
+                </>
+              ) : (
+                <></>
+              )}
+
+              {cardtopic === "Research" ? (
+                <>
+                  <CatThemeGreen>{cardtopic}</CatThemeGreen>
+                </>
+              ) : (
+                <></>
+              )}
+            </PopBrowseTopBlock>
+            <PopBrowseStatus>
+              <StatusP>Статус</StatusP>
+              <StatusThemes>
                 {isEdit ? (
                   <>
                     <div className="radio-toolbar_status">
@@ -108,7 +136,7 @@ function PopBrowse() {
                       </label>
 
                       <input
-                        checked={newcardlist.status  === "Нужно сделать"}
+                        checked={newcardlist.status === "Нужно сделать"}
                         type="radio"
                         id="radio2"
                         name="status"
@@ -120,7 +148,7 @@ function PopBrowse() {
                       </label>
 
                       <input
-                        checked={newcardlist.status  === "В работе"}
+                        checked={newcardlist.status === "В работе"}
                         type="radio"
                         id="radio3"
                         name="status"
@@ -132,7 +160,7 @@ function PopBrowse() {
                       </label>
 
                       <input
-                        checked={newcardlist.status  === "Тестирование"}
+                        checked={newcardlist.status === "Тестирование"}
                         type="radio"
                         id="radio4"
                         name="status"
@@ -144,7 +172,7 @@ function PopBrowse() {
                       </label>
 
                       <input
-                        checked={newcardlist.status  === "Готово"}
+                        checked={newcardlist.status === "Готово"}
                         type="radio"
                         id="radio5"
                         name="status"
@@ -157,24 +185,22 @@ function PopBrowse() {
                     </div>
                   </>
                 ) : (
-                  <div className="status__theme ">
-                    <p>{cardstatus}</p>
-                  </div>
+                  <StatusTheme>
+                    <StatusThemeP>{cardstatus}</StatusThemeP>
+                  </StatusTheme>
                 )}
-              </div>
-            </div>
-            <div className="pop-browse__wrap">
-              <form
-                className="pop-browse__form form-browse"
+              </StatusThemes>
+            </PopBrowseStatus>
+            <PopBrowseWrap>
+              <PopBrowseForm
                 id="formBrowseCard"
                 action="#"
               >
-                <div className="form-browse__block">
-                  <label htmlFor="textArea01" className="subttl">
+                <FormBrowseBlock>
+                  <Subttl>
                     Описание задачи
-                  </label>
-                  <textarea
-                    className="form-browse__area"
+                  </Subttl>
+                  <FormBrowseArea
                     name="description"
                     id="textArea01"
                     readOnly={!isEdit}
@@ -182,67 +208,63 @@ function PopBrowse() {
                     defaultValue={carddescription}
                     onChange={handleInputChange}
                   />
-                </div>
-              </form>
+                </FormBrowseBlock>
+              </PopBrowseForm>
 
               <Calendar selected={selected} setSelected={setSelected} />
-            </div>
-            <div className="theme-down__categories theme-down">
+            </PopBrowseWrap>
+            {/* <div className="theme-down__categories theme-down">
               <p className="categories__p subttl">Категория</p>
               <div className="categories__theme _orange _active-category">
                 <p className="_orange">Web Design</p>
               </div>
-            </div>
+            </div> */}
             {isEdit ? (
-              <div className="pop-browse__btn-edit ">
-                <div className="btn-group">
-                  <button
+              <PopBrowseBtnEdit>
+                <BtnGroup>
+                  <BtnBrowseEditSave
                     onClick={handleEditSubmit}
-                    className="btn-edit__edit _btn-bg _hover01"
                   >
                     Сохранить
-                  </button>
-                  <button
-                    className="btn-edit__edit _btn-bor _hover03"
+                  </BtnBrowseEditSave>
+                  <BtnBrowseEdit
                     onClick={editSwitch}
                   >
                     Отменить
-                  </button>
+                  </BtnBrowseEdit>
                   <Link to={appRoutes.MAIN}>
                     <BtnDelete onClick={deleteTask}>Удалить задачу</BtnDelete>
                   </Link>
-                </div>
+                </BtnGroup>
                 <Link to={appRoutes.MAIN}>
-                  <PopBrowseButtonExit>Закрыть</PopBrowseButtonExit>
+                  <BtnBrowseEditSave>Закрыть</BtnBrowseEditSave>
                 </Link>
-              </div>
+              </PopBrowseBtnEdit>
             ) : (
-              <div className="pop-browse__btn-browse">
-                <div className="btn-group">
-                  <button
-                    className="btn-browse__edit _btn-bor _hover03"
+              <PopBrowseBtnEdit>
+                <BtnGroup>
+                  <BtnBrowseEdit
                     onClick={editSwitch}
                   >
                     Редактировать задачу
-                  </button>
-                  <button
+                  </BtnBrowseEdit>
+                  <BtnBrowseEdit
                     onClick={deleteTask}
-                    className="btn-browse__delete _btn-bor _hover03"
                   >
                     Удалить задачу
-                  </button>
-                </div>
+                  </BtnBrowseEdit>
+                </BtnGroup>
                 <Link to={appRoutes.MAIN}>
-                  <button className="btn-browse__close _btn-bg _hover01">
+                  <BtnBrowseEditSave>
                     Закрыть
-                  </button>
+                  </BtnBrowseEditSave>
                 </Link>
-              </div>
+              </PopBrowseBtnEdit>
             )}
-          </div>
-        </div>
-      </div>
-    </div>
+          </PopBrowseContent>
+        </PopBrowseBlock>
+      </PopBrowseContainer>
+    </PopBrowseCont>
   );
 }
 

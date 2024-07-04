@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Calendar } from "../Calendar/Calendar";
 import { appRoutes } from "../../lib/approutes";
 import { Link, useOutletContext } from "react-router-dom";
-import { CalendarTtl, FormNewArea, FormNewBlock, FormNewInput, PopNewCardBlock, PopNewCardCalendar, PopNewCardClose, PopNewCardContainer, PopNewCardContent, PopNewCardForm, PopNewCardS, PopNewCardTtl, PopNewCardWrap, Subttl } from "./PopNewCard.styled";
+import { CalendarTtl, FormNewArea, FormNewBlock, FormNewCreate, FormNewInput, PopNewCardBlock, PopNewCardCalendar, PopNewCardClose, PopNewCardContainer, PopNewCardContent, PopNewCardForm, PopNewCardS, PopNewCardTtl, PopNewCardWrap, Subttl } from "./PopNewCard.styled";
 
 
 function PopNewCard() {
@@ -23,7 +23,6 @@ function PopNewCard() {
       date: selected,
     };
 
-    console.log(taskData);
     onCreate(taskData);
 
   };
@@ -133,13 +132,12 @@ function PopNewCard() {
               </div>
             </div>
             <Link to={appRoutes.MAIN}>
-              <button
+              <FormNewCreate
                 onClick={handleFormSubmit}
-                className="form-new__create _hover01"
                 id="btnCreate"
               >
                 Создать задачу
-              </button>
+              </FormNewCreate>
             </Link>
           </PopNewCardContent>
         </PopNewCardBlock>
