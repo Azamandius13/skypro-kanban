@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Container } from "../Common/Common.styled";
-import { ExitButtonHeader, HeaderM, PopUserSetTheme } from "./Header.styled";
+import { ExitButtonHeader, HeaderM} from "./Header.styled";
 import { HeaderBlock } from "./Header.styled";
 import { HeaderLogo } from "./Header.styled";
 import { HeaderNav } from "./Header.styled";
@@ -10,12 +10,14 @@ import { HeaderPopUserSet } from "./Header.styled";
 import { PopUserSetName } from "./Header.styled";
 import { HeaderLogoImg } from "./Header.styled";
 import { PopUserSetMail } from "./Header.styled";
-import { PopUserSetThemeInput } from "./Header.styled";
+// import { PopUserSetThemeInput } from "./Header.styled";
 import PopExit from "../PopExit/PopExit";
+import { appRoutes } from "../../lib/approutes";
 
-function Header({ addCard }) {
+function Header({userData}) {
   const [isOpened, setIsOpened] = useState(false);
   const [isOpenedPopUpExit, setIsOpenedPopUpExit] = useState(false);
+  
 
   function togglePopUpExit() {
     setIsOpenedPopUpExit((isOpenedPopUpExit) => !isOpenedPopUpExit);
@@ -24,6 +26,8 @@ function Header({ addCard }) {
   function togglePopUp() {
     setIsOpened((isOpened) => !isOpened);
   }
+
+
 
   return (
     <HeaderM>
@@ -40,17 +44,17 @@ function Header({ addCard }) {
             </a>
           </HeaderLogo>
           <HeaderNav>
-            <ButtonHeader onClick={addCard}>Создать новую задачу</ButtonHeader>
-            <HeaderUser onClick={togglePopUp}>Ivan Ivanov</HeaderUser>
+            <ButtonHeader to={appRoutes.NEWCARD}>Создать новую задачу</ButtonHeader>
+            <HeaderUser onClick={togglePopUp}>{userData.name}</HeaderUser>
             {isOpenedPopUpExit && (<PopExit />)}
             {isOpened && (
               <HeaderPopUserSet>
-                <PopUserSetName>Ivan Ivanov</PopUserSetName>
-                <PopUserSetMail>ivan.ivanov@gmail.com</PopUserSetMail>
-                <PopUserSetTheme>
+                <PopUserSetName>{userData.name}</PopUserSetName>
+                <PopUserSetMail>{userData.login}</PopUserSetMail>
+                {/* <PopUserSetTheme>
                   <p>Темная тема</p>
                   <PopUserSetThemeInput type="checkbox" name="checkbox" />
-                </PopUserSetTheme>
+                </PopUserSetTheme> */}
                 <ExitButtonHeader onClick={togglePopUpExit}>
                   Выйти
                 </ExitButtonHeader>

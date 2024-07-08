@@ -1,10 +1,12 @@
+import { WrapperCont } from "./Wrapper.styled";
+
 function Wrapper({ children }) {
   return (
-      <div className="wrapper">
+      <WrapperCont>
         {/* pop-up start*/}
         {/* pop-up end*/}
         {children}
-      </div>
+      </WrapperCont>
   );
 }
 
